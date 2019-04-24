@@ -38,3 +38,18 @@ void sort(struct process proc[],int num){
                 proc[j]=temp;
 			}
         }
+
+ 	}
+
+
+}
+
+void schedule(struct process proc[],int num,int sum){
+	int i,j;
+	float f,avgWaitingTime=0,avgtat=0;
+	sort(proc,num);
+	printf("\nProcess\tBurst Time\tArrival Time\tWaiting Time\tTurn-Around Time\n");
+	for(f=proc[0].at;f<(float)sum;){
+		float pr=-9999;
+		int nxt;
+		float temp;
