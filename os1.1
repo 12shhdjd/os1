@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct process
+{
+	int name;
+	float bt;
+	float at;
+	float status;
+	float wt;
+	float tat;
+
+};
+
+void display(struct process proc[],int num)
+{
+	int i;
+	printf("The input process details are as shown below\n");
+	printf("Process\tBurst-time\tArrival-time\n");
+	for(i=0;i<num;i++)
+	{
+	  printf("p%d\t%f\t%f\n",proc[i].name,proc[i].bt,proc[i].at);
+    }
+	printf("\n");
+}
+
+void sort(struct process proc[],int num){
+	int i,j;//iterative variables
+	struct process temp;//a temp variable od struct process type so swap the entire process all together
+	for(i=0;i<num-1;i++)//selection sort
+    {
+        for(j=i+1;j<num;j++)
+        {
+            if(proc[i].at>proc[j].at){
+				//swap the process with lesser arrival time
+                temp=proc[i];
+                proc[i]=proc[j];
+                proc[j]=temp;
+			}
+        }
