@@ -53,3 +53,48 @@ void schedule(struct process proc[],int num,int sum){
 		float pr=-9999;
 		int nxt;
 		float temp;
+	for(i=0;i<num;i++){
+
+			if(proc[i].at<=f && proc[i].status!=1){
+				temp=(proc[i].bt + (f - proc[i].at)) / proc[i].bt;
+				if(pr<temp){
+
+					pr=temp;
+					nxt=i;
+				}
+			}
+		}
+
+		f=proc[nxt].bt+f;
+
+		proc[nxt].wt=f-(proc[nxt].at)-(proc[nxt].bt);
+
+		proc[nxt].tat=f-proc[nxt].at;
+
+		avgWaitingTime+=proc[nxt].wt;
+
+		avgtat+=proc[nxt].tat;
+
+		proc[nxt].status=1;
+
+		printf("p%d\t%f\t%f",proc[nxt].name,proc[nxt].bt,proc[nxt].at);
+		printf("\t%f\t%f\n",proc[nxt].wt,proc[nxt].tat);
+
+	}
+	printf("Average waiting time=%f\n",avgWaitingTime/num);
+	printf("Average turn-around time=%f\n",avgtat/num);
+
+}
+
+int main(){
+	int i;//loop variable
+	float arrival,burst,sum=0;
+	static int num;//holds number of process
+	struct process proc[10];//array of struct to hold multiple propeties of a single process
+	printf("\t\t\t\t\t ::OS PROJECT::\n");
+	printf("Enter the number of process::");
+	scanf("%d",&num);
+
+	printf("\nNow, enter the data for the %d processes:\n",num);
+
+	//inputting the arrival time and burst time from the user.
