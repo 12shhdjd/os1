@@ -98,3 +98,30 @@ int main(){
 	printf("\nNow, enter the data for the %d processes:\n",num);
 
 	//inputting the arrival time and burst time from the user.
+	for(i=0;i<num;i++){
+
+		proc[i].name=i+1;
+		printf("_Process_ p%d\n",proc[i].name);
+
+		printf(":Burst time:");
+		scanf("%f",&burst);
+		proc[i].bt=burst;
+
+		printf(":Arrival time:");
+		scanf("%f",&arrival);
+		proc[i].at=arrival;
+
+		proc[i].status=0;
+		sum+=proc[i].bt;
+
+		printf("\n");
+	}
+	//output the input pricess details
+	display(proc,num);
+
+	//sort acc to arrival time
+	sort(proc,num);
+
+	//schedule
+	schedule(proc,num,sum);
+}
